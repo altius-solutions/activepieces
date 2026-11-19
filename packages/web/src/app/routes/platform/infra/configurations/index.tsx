@@ -2,6 +2,7 @@ import { isNil } from '@activepieces/core-utils';
 import {
   ApEdition,
   ApFlagId,
+  brand,
   PlatformConfiguration,
   PlatformConfigurationSettings,
 } from '@activepieces/shared';
@@ -134,7 +135,8 @@ const ConfigurationsSkeleton = () => {
         <SettingsPanel
           title={t('Telemetry')}
           description={t(
-            'Help us improve Activepieces. We never receive what your flows do, the data they process, or anything inside your connections and API keys.',
+            'Help us improve {productName}. We never receive what your flows do, the data they process, or anything inside your connections and API keys.',
+            { productName: brand.productName },
           )}
           flush
         >

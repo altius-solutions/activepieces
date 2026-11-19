@@ -14,6 +14,7 @@ import nonFreePlanBg from '@/assets/img/custom/non-free-plan-bg.jpg';
 import { useTelemetry } from '@/components/providers/telemetry-provider';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { flagsHooks } from '@/hooks/flags-hooks';
 import { platformHooks } from '@/hooks/platform-hooks';
 import { userHooks } from '@/hooks/user-hooks';
 import { AdminControl, adminControl } from '@/lib/admin-control';
@@ -165,7 +166,11 @@ export function SelfServeTrialSalesLink({
   featureKey,
   onClick,
 }: SelfServeTrialSalesLinkProps) {
+  const showEnterpriseUpsells = flagsHooks.useShowEnterpriseUpsells();
   const salesLink = useSalesLink({ locationInWebApp, featureKey, onClick });
+  if (!showEnterpriseUpsells) {
+    return null;
+  }
   return (
     <Button variant={variant} size={size} className={className} asChild>
       <a {...salesLink}>
@@ -187,9 +192,10 @@ export function useSalesLink({
 }) {
   const { capture } = useTelemetry();
   const { data: currentUser } = userHooks.useCurrentUser();
+  const links = flagsHooks.useBrandLinks();
   return {
     ...adminControl(AdminControl.TRIAL_SALES_LINK),
-    href: buildSalesUrl({ currentUser, featureKey }),
+    href: buildSalesUrl({ currentUser, featureKey, salesUrl: links.sales }),
     target: '_blank',
     rel: 'noopener noreferrer',
     onClick: () => {
@@ -209,11 +215,13 @@ export function useSalesLink({
 function buildSalesUrl({
   currentUser,
   featureKey,
+  salesUrl,
 }: {
   currentUser: UserWithMetaInformation | null | undefined;
   featureKey: FeatureKey | undefined;
+  salesUrl: string;
 }): string {
-  const url = new URL(SALES_URL);
+  const url = new URL(salesUrl);
   url.searchParams.set('email', currentUser?.email ?? '');
   url.searchParams.set('firstName', currentUser?.firstName ?? '');
   url.searchParams.set('lastName', currentUser?.lastName ?? '');
@@ -232,8 +240,6 @@ function buildSalesUrl({
   }
   return url.toString();
 }
-
-const SALES_URL = 'https://www.activepieces.com/sales';
 
 type CurrentSubscriptionCardProps = {
   info: PlatformBillingInformation;

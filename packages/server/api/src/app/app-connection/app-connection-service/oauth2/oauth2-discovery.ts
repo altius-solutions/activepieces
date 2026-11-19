@@ -1,6 +1,7 @@
 import { ActivepiecesError, ErrorCode, isNil, tryCatch, tryCatchSync } from '@activepieces/core-utils'
 import { OAuth2AuthorizationMethod } from '@activepieces/pieces-framework'
 import { safeHttp } from '@activepieces/server-utils'
+import { resolvedBrand } from '@activepieces/shared'
 
 const REQUEST_TIMEOUT_MS = 10_000
 
@@ -92,7 +93,7 @@ async function fetchFirst<T>(candidates: string[]): Promise<T | null> {
 
 async function registerClient({ registrationEndpoint, redirectUrl, scope, tokenEndpointAuthMethod }: RegisterClientParams): Promise<ClientRegistrationResponse> {
     const { data: response, error } = await tryCatch(() => safeHttp.axios.post<ClientRegistrationResponse>(registrationEndpoint, {
-        client_name: 'Activepieces',
+        client_name: resolvedBrand().productName,
         redirect_uris: [redirectUrl],
         grant_types: ['authorization_code', 'refresh_token'],
         response_types: ['code'],

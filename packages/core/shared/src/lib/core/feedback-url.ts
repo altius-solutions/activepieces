@@ -1,1 +1,3 @@
-export const feedbackUrl = 'https://feedback.activepieces.com'
+import { brand } from './common/brand'
+
+export const feedbackUrl = brand.links.feedback

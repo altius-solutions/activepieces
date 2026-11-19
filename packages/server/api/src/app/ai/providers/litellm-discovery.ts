@@ -1,6 +1,6 @@
 import { litellmAuth } from '@activepieces/ai-providers'
 import { safeHttp } from '@activepieces/server-utils'
-import { ActivepiecesError, AIProviderModelType, aiProviderUtils, ErrorCode, isNil, OpenAICompatibleProviderAuthConfig, OpenAICompatibleProviderConfig, ProviderModelConfig, sanitizeObjectForPostgresql, tryCatch } from '@activepieces/shared'
+import { ActivepiecesError, AIProviderModelType, aiProviderUtils, ErrorCode, isNil, OpenAICompatibleProviderAuthConfig, OpenAICompatibleProviderConfig, ProviderModelConfig, resolvedBrand, sanitizeObjectForPostgresql, tryCatch } from '@activepieces/shared'
 import { isAxiosError } from 'axios'
 import { z } from 'zod'
 import { MODEL_LIST_TIMEOUT_MS, ModelSyncMode } from './ai-provider'
@@ -164,7 +164,7 @@ function discoveryError({ discovery, config }: { discovery: Exclude<Discovery, {
         case 'bad_key':
             return validationError('LiteLLM rejected the API key. Check the key and the API key header.')
         case 'blocked':
-            return validationError(`Activepieces blocked the request to ${config.baseUrl} because it points to a private or internal address. Add that IP or CIDR range to AP_SSRF_ALLOW_LIST, or add models by hand.`)
+            return validationError(`${resolvedBrand().productName} blocked the request to ${config.baseUrl} because it points to a private or internal address. Add that IP or CIDR range to AP_SSRF_ALLOW_LIST, or add models by hand.`)
         case 'unreachable':
             return validationError(`Could not list the models of the LiteLLM at ${config.baseUrl}: ${discovery.detail}. Check the base URL, or add models by hand.`)
     }

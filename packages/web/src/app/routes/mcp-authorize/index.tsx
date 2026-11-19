@@ -1,5 +1,5 @@
 import { SeekPage } from '@activepieces/core-utils';
-import { ProjectType, ProjectWithLimits } from '@activepieces/shared';
+import { brand, ProjectType, ProjectWithLimits } from '@activepieces/shared';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { StatusCodes } from 'http-status-codes';
 import { t } from 'i18next';
@@ -193,7 +193,9 @@ function McpAuthorizePage() {
             >
               {clientName}
             </span>{' '}
-            {t('wants to connect to your Activepieces account')}
+            {t('wants to connect to your {productName} account', {
+              productName: brand.productName,
+            })}
           </CardDescription>
           {currentUser && (
             <p className="text-sm text-gray-11">

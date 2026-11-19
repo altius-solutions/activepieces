@@ -1,4 +1,4 @@
-import { PlatformConfigurationSettings } from '@activepieces/shared';
+import { brand, PlatformConfigurationSettings } from '@activepieces/shared';
 import { t } from 'i18next';
 import { Activity, Server } from 'lucide-react';
 import { Control } from 'react-hook-form';
@@ -17,7 +17,8 @@ export const TelemetrySection = ({
     <SettingsPanel
       title={t('Telemetry')}
       description={t(
-        'Help us improve Activepieces. We never receive what your flows do, the data they process, or anything inside your connections and API keys.',
+        'Help us improve {productName}. We never receive what your flows do, the data they process, or anything inside your connections and API keys.',
+        { productName: brand.productName },
       )}
       flush
     >

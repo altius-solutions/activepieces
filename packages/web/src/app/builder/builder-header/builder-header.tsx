@@ -3,7 +3,6 @@ import {
   ApFlagId,
   FlowOperationType,
   FlowVersionState,
-  supportUrl,
   UncategorizedFolderId,
 } from '@activepieces/shared';
 import { useQueryClient } from '@tanstack/react-query';
@@ -56,6 +55,7 @@ export const BuilderHeader = ({ isFlowLocked }: { isFlowLocked: boolean }) => {
   const isRunsPage = useLocation().pathname.includes('/runs');
   const queryClient = useQueryClient();
   const openNewWindow = useNewWindow();
+  const links = flagsHooks.useBrandLinks();
   const { data: showSupport } = flagsHooks.useFlag<boolean>(
     ApFlagId.SHOW_COMMUNITY,
   );
@@ -193,7 +193,7 @@ export const BuilderHeader = ({ isFlowLocked }: { isFlowLocked: boolean }) => {
           <FlowConnectionsPopover isFlowLocked={isFlowLocked} />
         )}
       {showSupport && (
-        <Button variant="ghost" onClick={() => openNewWindow(supportUrl)}>
+        <Button variant="ghost" onClick={() => openNewWindow(links.support)}>
           <CircleHelp className="w-4 h-4"></CircleHelp>
           {t('Support')}
         </Button>

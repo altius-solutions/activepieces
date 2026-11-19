@@ -2,6 +2,8 @@ import { isNil } from '@activepieces/core-utils';
 import {
   ApEdition,
   ApFlagId,
+  brand,
+  brandDocsUrl,
   EmbedSubdomainStatus,
   SigningKey,
 } from '@activepieces/shared';
@@ -142,7 +144,7 @@ const EmbedPage = () => {
             {description}{' '}
             <a
               {...adminControl(AdminControl.EMBEDDING_DOCS_LINK)}
-              href="https://www.activepieces.com/docs/embedding/overview"
+              href={brandDocsUrl('embedding/overview')}
               target="_blank"
               rel="noopener noreferrer"
               className="text-accent-11 underline"
@@ -157,10 +159,15 @@ const EmbedPage = () => {
       {showActivepiecesAiTrialNote && (
         <Alert>
           <Sparkles className="size-4" />
-          <AlertTitle>{t('Activepieces AI is on for your trial')}</AlertTitle>
+          <AlertTitle>
+            {t('{productName} AI is on for your trial', {
+              productName: brand.productName,
+            })}
+          </AlertTitle>
           <AlertDescription>
             {t(
-              "Plans that include Embedding don't usually come with the Activepieces AI provider. You can use both together only during the trial.",
+              "Plans that include Embedding don't usually come with the {productName} AI provider. You can use both together only during the trial.",
+              { productName: brand.productName },
             )}
           </AlertDescription>
         </Alert>

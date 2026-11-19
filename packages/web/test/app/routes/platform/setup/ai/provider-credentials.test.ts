@@ -62,7 +62,7 @@ describe('providerCredentials.fieldOfServerError', () => {
       'apiKey',
     ],
     [
-      'Activepieces blocked the request to http://127.0.0.1:4000/v1 because it points to a private or internal address.',
+      'Altius Flow blocked the request to http://127.0.0.1:4000/v1 because it points to a private or internal address.',
       'baseUrl',
     ],
     [
@@ -95,7 +95,7 @@ describe('providerCredentials.fieldOfServerError', () => {
     expect(
       providerCredentials.fieldOfServerError({
         provider: AIProviderName.BEDROCK,
-        message: 'Activepieces blocked the request to http://10.0.0.1',
+        message: 'Altius Flow blocked the request to http://10.0.0.1',
       }),
     ).toBeUndefined();
   });

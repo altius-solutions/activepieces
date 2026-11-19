@@ -1,5 +1,6 @@
 import { ApErrorParams, ErrorCode, isNil } from '@activepieces/core-utils';
 import {
+  brand,
   ChatUIResponse,
   HumanInputFormResultTypes,
 } from '@activepieces/shared';
@@ -92,7 +93,8 @@ export function FlowChat({
   const [imageDialogOpen, setImageDialogOpen] = useState(false);
 
   const botName =
-    chatUI?.props.botName ?? `${chatUI?.platformName ?? 'Activepieces'} Bot`;
+    chatUI?.props.botName ??
+    `${chatUI?.platformName ?? brand.productName} Bot`;
 
   const { mutate: sendMessage, isPending: isSending } = useMutation({
     mutationFn: async ({

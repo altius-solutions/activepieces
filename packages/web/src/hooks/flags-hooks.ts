@@ -1,4 +1,9 @@
-import { ApFlagId, StatusColors } from '@activepieces/shared';
+import {
+  ApFlagId,
+  brand,
+  BrandLinks,
+  StatusColors,
+} from '@activepieces/shared';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { flagsApi, FlagsMap } from '../api/flags-api';
@@ -7,9 +12,12 @@ type WebsiteBrand = {
   websiteName: string;
   logos: {
     fullLogoUrl: string;
+    fullLogoDarkUrl?: string;
     favIconUrl: string;
     logoIconUrl: string;
   };
+  links?: BrandLinks;
+  showEnterpriseUpsells?: boolean;
   colors: {
     avatar: string;
     'blue-link': string;
@@ -46,6 +54,14 @@ export const flagsHooks = {
   useWebsiteBranding: () => {
     const { data: theme } = flagsHooks.useFlag<WebsiteBrand>(ApFlagId.THEME);
     return theme!;
+  },
+  useBrandLinks: (): BrandLinks => {
+    const branding = flagsHooks.useWebsiteBranding();
+    return branding.links ?? brand.links;
+  },
+  useShowEnterpriseUpsells: (): boolean => {
+    const branding = flagsHooks.useWebsiteBranding();
+    return branding.showEnterpriseUpsells ?? brand.showEnterpriseUpsells;
   },
   useFlag: <T>(flagId: ApFlagId) => {
     const data = useSuspenseQuery<FlagsMap, Error>({

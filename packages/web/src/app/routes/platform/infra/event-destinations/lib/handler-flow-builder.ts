@@ -12,6 +12,7 @@ import {
   RouterAction,
   RouterExecutionType,
   Template,
+  brand,
   TemplateStatus,
   TemplateType,
 } from '@activepieces/shared';
@@ -68,7 +69,7 @@ export const handlerFlowBuilder = {
       tags: [],
       blogUrl: null,
       metadata: null,
-      author: 'Activepieces',
+      author: brand.productName,
       categories: [],
       pieces: hasOfficialPieceEvents
         ? [WEBHOOK_PIECE_NAME, HTTP_PIECE_NAME]

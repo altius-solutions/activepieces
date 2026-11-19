@@ -1,3 +1,4 @@
+import { brand } from '@activepieces/shared';
 import { useMutation } from '@tanstack/react-query';
 import {
   ActivepiecesClientEventName,
@@ -99,7 +100,9 @@ export const EmbeddedMcpAuthorizeDialog = () => {
           </DialogTitle>
           <DialogDescription className="text-center">
             <span className="font-semibold text-gray-12">{clientName}</span>{' '}
-            {t('wants to connect to your Activepieces account')}
+            {t('wants to connect to your {productName} account', {
+              productName: brand.productName,
+            })}
           </DialogDescription>
         </DialogHeader>
 

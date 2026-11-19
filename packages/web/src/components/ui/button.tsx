@@ -12,7 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-accent-9 stroke-on-accent text-on-accent enabled:hover:bg-accent-9/90',
+          'bg-accent-9 stroke-on-accent text-on-accent enabled:hover:bg-[var(--brand-primary-hover)]',
         basic: 'text-accent-11 font-medium enabled:hover:bg-gray-4',
         secondary:
           'text-gray-12 bg-gray-3 enabled:hover:bg-gray-4 enabled:hover:text-gray-12',

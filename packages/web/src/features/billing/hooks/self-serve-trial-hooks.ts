@@ -64,6 +64,7 @@ export function useLockedFeature({
 }): LockedFeature {
   const actionWhenLocked = useActionWhenLocked({ featureKey });
   const openDialog = useOpenLockedFeature({ featureKey });
+  const showEnterpriseUpsells = flagsHooks.useShowEnterpriseUpsells();
   const locked = !unlocked;
 
   const runOrShowLockedDialog: LockedFeature['runOrShowLockedDialog'] = (
@@ -74,7 +75,9 @@ export function useLockedFeature({
       return;
     }
     if (actionWhenLocked === ActionWhenLocked.SWITCH_EDITION) {
-      window.open(enterpriseDocs.switchToEnterpriseUrl, '_blank', 'noopener');
+      if (showEnterpriseUpsells) {
+        window.open(enterpriseDocs.switchToEnterpriseUrl, '_blank', 'noopener');
+      }
       return;
     }
     openDialog({ featureKey, postTrialActivationCallback });

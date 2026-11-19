@@ -1,4 +1,4 @@
-import { DEFAULT_BRAND_LOGOS, PlatformThemeColors } from '@activepieces/shared'
+import { PlatformThemeColors, resolvedBrand } from '@activepieces/shared'
 import tinycolor from 'tinycolor2'
 
 function generateColorVariations(defaultColor: string) {
@@ -73,8 +73,33 @@ export function generateTheme({
     }
 }
 
-export const defaultTheme = generateTheme({
-    primaryColor: '#6e41e2',
-    websiteName: 'Activepieces',
-    ...DEFAULT_BRAND_LOGOS,
-})
+function buildDefaultTheme() {
+    const current = resolvedBrand()
+    const theme = generateTheme({
+        primaryColor: current.colors.primary,
+        websiteName: current.productName,
+        fullLogoUrl: current.logos.fullLogoUrl,
+        favIconUrl: current.logos.favIconUrl,
+        logoIconUrl: current.logos.logoIconUrl,
+        themeColors: {
+            primary: {
+                dark: current.colors.primaryHover,
+                light: current.colors.tint,
+            },
+            'blue-link': current.colors.primary,
+        },
+    })
+    return {
+        ...theme,
+        logos: {
+            ...theme.logos,
+            fullLogoDarkUrl: current.logos.fullLogoDarkUrl,
+            emailLogoUrl: current.logos.emailLogoUrl,
+        },
+        links: current.links,
+        showPoweredBy: current.showPoweredBy,
+        showEnterpriseUpsells: current.showEnterpriseUpsells,
+    }
+}
+
+export const defaultTheme = buildDefaultTheme()

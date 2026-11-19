@@ -1,5 +1,5 @@
 import { ActivepiecesError, apId, assertEqual, assertNotNullOrUndefined, ErrorCode, isNil, ProjectRole, RoleType, SeekPage, spreadIfDefined, tryCatch, unique } from '@activepieces/core-utils'
-import { ApEdition, DEFAULT_BRAND_LOGOS, INVITATION_EXPIRY_SECONDS, InvitationStatus, InvitationType, PlatformRole, RemoveProjectFromInvitationResponse, TelemetryEventName, UserInvitation, UserInvitationPreview, UserInvitationWithLink } from '@activepieces/shared'
+import { ApEdition, INVITATION_EXPIRY_SECONDS, InvitationStatus, InvitationType, PlatformRole, RemoveProjectFromInvitationResponse, TelemetryEventName, UserInvitation, UserInvitationPreview, UserInvitationWithLink } from '@activepieces/shared'
 import dayjs from 'dayjs'
 import { FastifyBaseLogger } from 'fastify'
 import { JsonWebTokenError } from 'jsonwebtoken'
@@ -68,7 +68,7 @@ export const userInvitationsService = (log: FastifyBaseLogger) => ({
         return {
             email: invitation.email,
             platformName: platform.name,
-            platformLogoUrl: theme.logos.logoIconUrl === DEFAULT_BRAND_LOGOS.logoIconUrl ? null : theme.logos.logoIconUrl,
+            platformLogoUrl: theme.logos.logoIconUrl,
             memberCount,
             status: invitation.status,
         }

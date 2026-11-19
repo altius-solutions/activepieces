@@ -11,6 +11,7 @@ import {
   AiUsageSeriesPoint,
   AiUsageTotals,
   ApEdition,
+  brand,
 } from '@activepieces/shared';
 import { t } from 'i18next';
 
@@ -62,8 +63,9 @@ function creditsNote({
   managedCredits: number;
 }): string | undefined {
   return managedCredits > 0
-    ? t('Includes {credits} Activepieces credits', {
+    ? t('Includes {credits} {productName} credits', {
         credits: usageFormat.whole(managedCredits),
+        productName: brand.productName,
       })
     : undefined;
 }
@@ -202,7 +204,7 @@ function itemDisplayName({ item }: { item: AiUsageItem }): string {
     return t('No project (platform chat)');
   }
   if (item.dimension === 'key' && item.id === AI_USAGE_CREDITS_KEY_ID) {
-    return t('Activepieces credits');
+    return t('{productName} credits', { productName: brand.productName });
   }
   if (
     item.dimension === 'key' &&

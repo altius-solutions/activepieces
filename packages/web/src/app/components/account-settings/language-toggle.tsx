@@ -1,4 +1,4 @@
-import { ApFlagId } from '@activepieces/shared';
+import { ApFlagId, brand, brandDocsUrl } from '@activepieces/shared';
 import { useMutation } from '@tanstack/react-query';
 import { t } from 'i18next';
 import { Check, ChevronsUpDown } from 'lucide-react';
@@ -34,6 +34,7 @@ export const LanguageToggle = () => {
   const { data: showCommunity } = flagsHooks.useFlag<boolean>(
     ApFlagId.SHOW_COMMUNITY,
   );
+  const showEnterpriseUpsells = flagsHooks.useShowEnterpriseUpsells();
   const [selectedLanguage, setSelectedLanguage] = useState<string | undefined>(
     i18n.language ?? 'en',
   );
@@ -56,14 +57,16 @@ export const LanguageToggle = () => {
     <SettingRow
       title={t('Language')}
       description={
-        showCommunity ? (
+        showCommunity && showEnterpriseUpsells ? (
           <Link
             className="text-accent-11 hover:underline"
             rel="noopener noreferrer"
             target="_blank"
-            to="https://www.activepieces.com/docs/about/i18n"
+            to={brandDocsUrl('about/i18n')}
           >
-            {t('Help translate Activepieces →')}
+            {t('Help translate {productName} →', {
+              productName: brand.productName,
+            })}
           </Link>
         ) : undefined
       }

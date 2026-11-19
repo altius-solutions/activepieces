@@ -1,4 +1,5 @@
 import { AP_FUNCTIONS, ApFunction } from '@activepieces/core-formula';
+import { brandDocsUrl } from '@activepieces/shared';
 import { ExternalLink } from 'lucide-react';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -262,5 +263,4 @@ export function FunctionSearchPopover({
   );
 }
 
-export const DEFAULT_FORMULAS_DOCS_URL =
-  'https://www.activepieces.com/docs/flows/using-formulas';
+export const DEFAULT_FORMULAS_DOCS_URL = brandDocsUrl('flows/using-formulas');

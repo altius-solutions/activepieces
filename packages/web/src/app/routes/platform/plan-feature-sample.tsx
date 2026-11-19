@@ -1,4 +1,4 @@
-import { PlatformWithoutSensitiveData } from '@activepieces/shared';
+import { brand, brandDocsUrl, PlatformWithoutSensitiveData } from '@activepieces/shared';
 import { t } from 'i18next';
 import React from 'react';
 
@@ -98,7 +98,7 @@ const PLAN_FEATURE_SAMPLES: Record<PlanFeature, PlanFeatureSampleSpec> = {
     teaser: {
       featureKey: 'API',
       title: 'Enable API Keys',
-      description: 'Create and manage API keys to access Activepieces APIs.',
+      description: `Create and manage API keys to access ${brand.productName} APIs.`,
     },
   },
   secretManagers: {
@@ -126,7 +126,7 @@ const PLAN_FEATURE_SAMPLES: Record<PlanFeature, PlanFeatureSampleSpec> = {
       description:
         'Stream every audit event in OpenTelemetry (OTLP) format to Datadog, PostHog, Grafana Loki, or any OTLP backend. Or send it as raw JSON to a webhook or a handler flow.',
       documentationUrl:
-        'https://www.activepieces.com/docs/admin-guide/guides/event-streaming',
+        brandDocsUrl('admin-guide/guides/event-streaming'),
     },
   },
   pieces: {

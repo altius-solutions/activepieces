@@ -1,4 +1,5 @@
 import {
+  brandDocsUrl,
   McpOAuthClientKey,
   McpOAuthGrant,
   PLATFORM_WIDE_PROJECT_FILTER_VALUE,
@@ -34,7 +35,7 @@ import { PageBand } from '../page-band';
 
 import { buildGrantsColumns } from './grants-columns';
 
-const DOCS_URL = 'https://www.activepieces.com/docs/mcp/overview';
+const DOCS_URL = brandDocsUrl('mcp/overview');
 const DEFAULT_PAGE_SIZE = 10;
 
 export function GrantsTab() {

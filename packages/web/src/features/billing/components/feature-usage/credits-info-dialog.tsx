@@ -1,4 +1,4 @@
-import { ApEdition, ApFlagId } from '@activepieces/shared';
+import { ApEdition, ApFlagId, brand } from '@activepieces/shared';
 import { t } from 'i18next';
 import { ArrowUpRight, Coins } from 'lucide-react';
 import React from 'react';
@@ -130,7 +130,9 @@ function buildCostItems({
   includeActivepiecesModels: boolean;
   chatEnabled: boolean;
 }): CostItem[] {
-  const modelByActivepieces = t('Model by Activepieces');
+  const modelByActivepieces = t('Model by {productName}', {
+    productName: brand.productName,
+  });
   const execution: CostItem[] = [
     { kind: 'section', label: t('Execution') },
     { kind: 'row', action: t('Flow run'), credits: '1' },
@@ -153,7 +155,9 @@ function buildCostItems({
     {
       kind: 'row',
       action: t('AI step'),
-      sub: t('Activepieces AI — non 3rd-party ai i.e OpenAI'),
+      sub: t('{productName} AI — non 3rd-party ai i.e OpenAI', {
+        productName: brand.productName,
+      }),
       credits: t('see below'),
     },
     {
@@ -167,7 +171,7 @@ function buildCostItems({
     ? [
         {
           kind: 'row',
-          action: t('Activepieces AI'),
+          action: t('{productName} AI', { productName: brand.productName }),
           sub: modelByActivepieces,
           credits: t('what the call costs'),
         },
@@ -197,14 +201,19 @@ function buildFaqs({
     {
       question: t('What are credits?'),
       answer: t(
-        'Credits are the unit used to measure your usage on Activepieces. Every action you run consumes a certain number of credits depending on what it does.',
+        'Credits are the unit used to measure your usage on {productName}. Every action you run consumes a certain number of credits depending on what it does.',
+        { productName: brand.productName },
       ),
     },
     {
       question: t('How are credits consumed?'),
       answer: (
         <div className="flex flex-col gap-2.5">
-          <span>{t("Here's what each action in Activepieces costs:")}</span>
+          <span>
+            {t("Here's what each action in {productName} costs:", {
+              productName: brand.productName,
+            })}
+          </span>
           <CreditsCostTable
             includeActivepiecesModels={isCloud}
             chatEnabled={chatEnabled}
@@ -215,7 +224,8 @@ function buildFaqs({
     {
       question: t('What is BYOK?'),
       answer: t(
-        'BYOK stands for Bring Your Own Key. You connect your own AI provider API key, and Activepieces charges only 1 credit per call instead of the full model cost.',
+        'BYOK stands for Bring Your Own Key. You connect your own AI provider API key, and {productName} charges only 1 credit per call instead of the full model cost.',
+        { productName: brand.productName },
       ),
     },
     {

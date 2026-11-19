@@ -1,6 +1,9 @@
-import { brandColors, StatusColors } from '@activepieces/shared';
+import { brand, brandColors, StatusColors } from '@activepieces/shared';
 
-let saved: BrandSeed = { primaryColor: brandColors.defaultPrimaryColor() };
+let saved: BrandSeed = {
+  primaryColor: brandColors.defaultPrimaryColor(),
+  primaryHover: brand.colors.primaryHover,
+};
 let preview: BrandSeed | null = null;
 
 function apply(seed: BrandSeed) {
@@ -18,9 +21,13 @@ function clearPreview() {
   write(saved);
 }
 
-function write({ primaryColor, statusColors = {} }: BrandSeed) {
+function write({ primaryColor, primaryHover, statusColors = {} }: BrandSeed) {
   const { style } = document.documentElement;
   brandColors.variableNames().forEach((name) => style.removeProperty(name));
+  style.setProperty(
+    '--brand-primary-hover',
+    primaryHover ?? brand.colors.primaryHover,
+  );
   Object.entries({
     ...brandColors.cssVariables({ primaryColor }),
     ...brandColors.statusCssVariables({ statusColors }),
@@ -31,5 +38,6 @@ export const brandSeed = { apply, setPreview, clearPreview };
 
 type BrandSeed = {
   primaryColor: string;
+  primaryHover?: string;
   statusColors?: StatusColors;
 };

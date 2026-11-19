@@ -244,7 +244,7 @@ function Sidebar({
       <div
         data-slot="sidebar"
         className={cn(
-          'flex h-full w-(--sidebar-width) flex-col bg-gray-2 text-gray-12',
+          'flex h-full w-(--sidebar-width) flex-col bg-[var(--brand-sidebar)] text-gray-12',
           className,
         )}
         {...props}
@@ -261,7 +261,7 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-gray-2 p-0 text-gray-12 [&>button]:hidden"
+          className="w-(--sidebar-width) bg-[var(--brand-sidebar)] p-0 text-gray-12 [&>button]:hidden"
           style={
             {
               '--sidebar-width': SIDEBAR_WIDTH_MOBILE,
@@ -332,7 +332,7 @@ function Sidebar({
         <div
           data-sidebar="sidebar"
           data-slot="sidebar-inner"
-          className="flex h-full w-full flex-col bg-gray-2 group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-gray-6 group-data-[variant=floating]:shadow"
+          className="flex h-full w-full flex-col bg-[var(--brand-sidebar)] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-gray-6 group-data-[variant=floating]:shadow"
           onClick={
             !hoverMode && state === 'collapsed' && collapsible === 'icon'
               ? (event) => {

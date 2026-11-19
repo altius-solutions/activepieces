@@ -1,5 +1,5 @@
 import { isNil } from '@activepieces/core-utils';
-import { PurchasablePlan } from '@activepieces/shared';
+import { brand, PurchasablePlan } from '@activepieces/shared';
 import { t } from 'i18next';
 
 import { formatUtils } from '@/lib/format-utils';
@@ -188,7 +188,8 @@ function planCatalog(): PlanCatalogEntry[] {
         {
           label: t('MCPs and API access'),
           tooltip: t(
-            'Serve your tools to any AI assistant over MCP, and manage Activepieces from your own code over the API.',
+            'Serve your tools to any AI assistant over MCP, and manage {productName} from your own code over the API.',
+            { productName: brand.productName },
           ),
         },
       ],

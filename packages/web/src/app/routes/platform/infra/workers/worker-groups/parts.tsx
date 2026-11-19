@@ -1,4 +1,5 @@
 import {
+  brandDocsUrl,
   ColorName,
   PROJECT_COLOR_PALETTE,
   WorkerGroupSummary,
@@ -705,5 +706,6 @@ function NoGroupsHint({
   );
 }
 
-export const DOCS_URL =
-  'https://www.activepieces.com/docs/install/configure-operate/worker-groups';
+export const DOCS_URL = brandDocsUrl(
+  'install/configure-operate/worker-groups',
+);

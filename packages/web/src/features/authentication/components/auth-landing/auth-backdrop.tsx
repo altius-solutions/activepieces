@@ -24,9 +24,9 @@ export function AuthBackdrop() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 flex select-none overflow-hidden bg-gray-2 animate-in fade-in duration-700"
+      className="pointer-events-none absolute inset-0 flex select-none overflow-hidden bg-[var(--brand-sidebar)] animate-in fade-in duration-700"
     >
-      <SidebarFacsimile logoUrl={logoUrl} />
+      <SidebarFacsimile logoUrl={logoUrl} brandName={branding.websiteName} />
       <div className="min-w-0 flex-1 p-1.5">
         <div className="flex h-full flex-col overflow-hidden rounded-xl border bg-gray-1 shadow-panel">
           <div className="flex items-center gap-2 border-b px-5 py-3 text-sm text-gray-11">
@@ -57,13 +57,19 @@ export function AuthBackdrop() {
   );
 }
 
-function SidebarFacsimile({ logoUrl }: { logoUrl: string }) {
+function SidebarFacsimile({
+  logoUrl,
+  brandName,
+}: {
+  logoUrl: string;
+  brandName: string;
+}) {
   return (
     <div className="hidden w-60 shrink-0 flex-col gap-4 px-3 py-3 lg:flex">
       <div className="flex items-center gap-2 rounded-md px-1.5 py-1">
         <LogoPlate src={logoUrl} className="size-5 rounded-md p-px" />
-        <span className="truncate text-sm font-medium text-gray-12/80">
-          Acme Inc
+        <span className="truncate text-sm font-medium text-[var(--brand-navy)]">
+          {brandName}
         </span>
         <ChevronsUpDown className="ml-auto size-3.5 text-gray-11" />
       </div>

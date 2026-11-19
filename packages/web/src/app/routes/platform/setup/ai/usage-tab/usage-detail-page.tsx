@@ -6,6 +6,7 @@ import {
   AiUsageDimension,
   ApEdition,
   ApFlagId,
+  brand,
 } from '@activepieces/shared';
 import { t } from 'i18next';
 import {
@@ -270,7 +271,9 @@ function DetailTiles({
           label={t('Billed on your plan')}
           icon={<Receipt />}
           value={usageFormat.usd(detail.reportedUsd ?? 0)}
-          hint={t('What these calls used of your Activepieces credits')}
+          hint={t('What these calls used of your {productName} credits', {
+            productName: brand.productName,
+          })}
         />
       ) : (
         <StatCard
@@ -323,7 +326,11 @@ function DashboardTile({ item }: { item: AiUsageDetail['item'] }) {
     <StatCard
       label={t('Provider dashboard')}
       icon={<ExternalLink />}
-      value={internal ? t('Activepieces credits') : t('Your bill')}
+      value={
+        internal
+          ? t('{productName} credits', { productName: brand.productName })
+          : t('Your bill')
+      }
       hint={
         internal
           ? t('Credits are billed on your plan')

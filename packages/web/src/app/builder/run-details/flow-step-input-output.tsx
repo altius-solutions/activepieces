@@ -9,6 +9,7 @@ import {
   FlowRun,
   FlowRunStatus,
   ApFlagId,
+  brandDocsUrl,
   LogSliceRef,
   StepOutputType,
   RunInternalError,
@@ -365,7 +366,7 @@ const TruncatedInputNotice = () => (
         'Some input values were too large to keep in the run logs and are shown as truncated. The step ran with the full values.',
       )}{' '}
       <a
-        href="https://www.activepieces.com/docs/install/troubleshooting/truncated-logs"
+        href={brandDocsUrl('install/troubleshooting/truncated-logs')}
         target="_blank"
         rel="noreferrer"
         className="text-accent-11 underline"
