@@ -66,7 +66,7 @@ protect connections and tokens, and telemetry.
 | `AP_CONFIG_PATH` | Path where the PGLite database and local settings are stored. | `~/.activepieces` |
 | `AP_MCP_URL` | Public base URL for MCP traffic on its own hostname (e.g. `https://mcp.example.com`). Must not share a hostname with `AP_FRONTEND_URL`. When unset, MCP is served from `AP_FRONTEND_URL`. See [Serving MCP from its own hostname](#serving-mcp-from-its-own-hostname). | `None` |
 | `AP_INTERNAL_URL` | (Beta) Internal URL used for the Google sign-in redirect and for links in emails and alerts, e.g. `https://demo.activepieces.com/api`. SAML SSO does not use it: the SAML ACS URL is always based on `AP_FRONTEND_URL`. | `None` |
-| `AP_TELEMETRY_ENABLED` | Starting value for product analytics. Each platform's setting is created from it on first read; after that, change it at Platform Admin → Account → Configurations. | `true` |
+| `AP_TELEMETRY_ENABLED` | Starting value for product analytics. Each platform's setting is created from it on first read; after that, change it at Platform Admin → Account → Configurations. Unset means off. | `false` |
 
 <Warning>
 `AP_FRONTEND_URL` is essential for webhooks and app triggers. It must be

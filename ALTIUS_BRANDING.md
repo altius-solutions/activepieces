@@ -82,8 +82,15 @@ Verification, password reset, and invitation templates live in `packages/server/
 - Piece package ids, the piece CDN (`cdn.activepieces.com`), and cloud piece sync. Those are how integrations load.
 - OAuth broker hosts (`secrets.activepieces.com`). Community cloud-managed OAuth still uses them when `AP_CLOUD_AUTH_ENABLED` is on.
 - SAML entity id `Activepieces`. Changing it would break existing identity-provider setups.
-- The upstream telemetry default in code (`AP_TELEMETRY_ENABLED` defaults to `true` and reports to Activepieces). Set `AP_TELEMETRY_ENABLED=false` on any Altius install. `.env.example` and `.env.dev` do this.
 - The `docs/` site in this repo. It is the upstream handbook, kept so merges stay readable. In-app documentation links go to https://altiusol.com.
+
+## Telemetry
+
+Product analytics is off unless someone turns it on. `AP_TELEMETRY_ENABLED` unset means disabled. The code default in `packages/server/api/src/app/helper/system/system.ts` is `'false'`, and a missing value is treated as off when a platform's configuration row is created and when a project has no row yet. Set `AP_TELEMETRY_ENABLED=true` before the first read of a platform's configuration to start that platform opted in. After the row exists, the switch is **Platform Admin → Account → Configurations → Product analytics**; changing the variable does not rewrite it.
+
+That is the PostHog product telemetry (sign-in, flow events, the in-app page views). Deployment-setup snapshots are a separate switch and only run for licensed enterprise instances, which this Community build does not use.
+
+Upstream sets the same default back to `'true'`. On a merge, keep `'false'` here and the `?? false` fallbacks in `platform-configuration.service.ts`.
 
 ## Merging a future Activepieces release
 
@@ -100,6 +107,7 @@ Verification, password reset, and invitation templates live in `packages/server/
 - `packages/core/shared/src/lib/core/common/brand-colors.ts` (default accent `#4F46E5`)
 - `packages/core/shared/src/lib/core/support-url.ts` and `feedback-url.ts`
 - `packages/server/api/src/app/flags/theme.ts` and `flag.service.ts`
+- `packages/server/api/src/app/helper/system/system.ts` (`AP_TELEMETRY_ENABLED` default `'false'`)
 - `packages/web/vite.config.mts`, `packages/web/src/styles.css`
 - `packages/web/src/components/custom/full-logo.tsx` and `show-powered-by.tsx`
 - `packages/web/public/brand/*`, `logo.svg`, `favicon.ico`, `logo-180.png`, `logo-192.png`

@@ -48,8 +48,8 @@ export function AdminResources({ resources }: AdminResourcesProps) {
           {docs.length > 0 && videos.length > 0 && (
             <DropdownMenuLabel>{t('Docs')}</DropdownMenuLabel>
           )}
-          {docs.map((doc) => (
-            <DropdownMenuItem key={doc.url} asChild>
+          {docs.map((doc, index) => (
+            <DropdownMenuItem key={`${doc.label()}-${index}`} asChild>
               <a
                 {...adminControl(doc.control)}
                 href={doc.url}

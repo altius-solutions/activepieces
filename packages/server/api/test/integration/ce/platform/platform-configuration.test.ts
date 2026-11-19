@@ -21,7 +21,7 @@ afterAll(async () => {
 
 describe('platform configuration', () => {
     it('creates the row on first read, taking its default from AP_TELEMETRY_ENABLED so an opted-out operator stays opted out', async () => {
-        const envDefault = system.getBoolean(AppSystemProp.TELEMETRY_ENABLED) ?? true
+        const envDefault = system.getBoolean(AppSystemProp.TELEMETRY_ENABLED) ?? false
         expect(envDefault).toBe(false)
 
         const ctx = await createTestContext(app!)

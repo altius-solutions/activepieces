@@ -73,10 +73,10 @@ describe('FunctionSearchPopover docs link', () => {
     );
   });
 
-  it('points at the Activepieces docs outside embed', () => {
+  it('points at the product docs outside embed', () => {
     renderPopover({ docsUrl: DEFAULT_FORMULAS_DOCS_URL });
     expect(renderedDocsLink()?.getAttribute('href')).toBe(
-      'https://www.activepieces.com/docs/flows/using-formulas',
+      'https://altiusol.com',
     );
   });
 });

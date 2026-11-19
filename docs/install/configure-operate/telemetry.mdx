@@ -32,4 +32,4 @@ Go to **Platform Admin → Account → Configurations** and switch **Product ana
 
 **Deployment setup** is a separate switch in the same place, and is on by default. Unlike product analytics it does not read `AP_TELEMETRY_ENABLED` — switch it off in the UI to stop the daily snapshot.
 
-`AP_TELEMETRY_ENABLED=false` still works as a starting value: each platform's setting is created the first time it is read and takes the variable's value, so a self-hosted instance with the variable set to `false` is opted out from the start and stays opted out through the upgrade. Once the setting exists, the toggle governs it and changing the variable has no further effect.
+`AP_TELEMETRY_ENABLED` is the starting value for product analytics. On this fork it defaults to off: leaving the variable unset is the same as `false`. Each platform's setting is created the first time it is read and takes that value, so a new install does not report usage unless the variable is `true` or an admin turns Product analytics on. Once the setting exists, the toggle governs it and changing the variable has no further effect.
