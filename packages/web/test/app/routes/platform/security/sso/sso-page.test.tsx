@@ -577,7 +577,7 @@ describe('SSOPage', () => {
     ).toBeDefined();
     expect(
       screen.getByRole('link', { name: 'Setup guide' }).getAttribute('href'),
-    ).toBe('https://www.activepieces.com/docs/admin-guide/guides/sso#google');
+    ).toBe('https://altiusol.com');
   });
 
   it('shows no Google note once Google sign-in works', () => {

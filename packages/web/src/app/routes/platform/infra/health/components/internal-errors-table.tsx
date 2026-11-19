@@ -1,4 +1,4 @@
-import { InternalErrorImpactItem } from '@activepieces/shared';
+import { brand, InternalErrorImpactItem } from '@activepieces/shared';
 import { t } from 'i18next';
 import { CircleCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -32,7 +32,8 @@ export function InternalErrorsTable({
     <SettingsPanel
       title={t('Internal errors — impact')}
       description={t(
-        'Internal errors are failures inside Activepieces itself (engine or worker), not in your flow logic. Grouped by the project and flow they affected.',
+        'Internal errors are failures inside {productName} itself (engine or worker), not in your flow logic. Grouped by the project and flow they affected.',
+        { productName: brand.productName },
       )}
       action={
         total > 0 ? (

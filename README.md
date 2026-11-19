@@ -19,7 +19,8 @@ src="https://github.com/activepieces/activepieces/assets/1812998/76c97441-c285-4
 <a href="/LICENSE" target="_blank"><img src='https://img.shields.io/badge/license-MIT-green?style=for-the-badge' /></a>&nbsp;<img src='https://img.shields.io/github/commit-activity/w/activepieces/activepieces/main?style=for-the-badge' />&nbsp;<a href='https://discord.gg/2jUXBKDdP8'><img src='https://img.shields.io/discord/966798490984382485?style=for-the-badge' /></a>
 </p>
 <p align="center">
-   An open source replacement for Zapier
+   <strong>Altius Flow</strong> — workflow automation from <a href="https://altiusol.com">Altius Solutions</a>.<br/>
+   Community edition of Activepieces, rebranded for small businesses. Branding lives in <a href="/ALTIUS_BRANDING.md">ALTIUS_BRANDING.md</a>. The MIT license and Activepieces copyright notice in <a href="/LICENSE">LICENSE</a> are unchanged.
 </p>
 
 <p align="center">

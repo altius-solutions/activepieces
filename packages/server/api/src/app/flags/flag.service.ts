@@ -101,7 +101,7 @@ export const flagService = (log: FastifyBaseLogger) => ({
             },
             {
                 id: ApFlagId.SHOW_POWERED_BY_IN_FORM,
-                value: true,
+                value: defaultTheme.showPoweredBy,
                 created,
                 updated,
             },
@@ -191,13 +191,13 @@ export const flagService = (log: FastifyBaseLogger) => ({
             },
             {
                 id: ApFlagId.PRIVACY_POLICY_URL,
-                value: 'https://www.activepieces.com/privacy',
+                value: defaultTheme.links.privacy,
                 created,
                 updated,
             },
             {
                 id: ApFlagId.TERMS_OF_SERVICE_URL,
-                value: 'https://www.activepieces.com/terms',
+                value: defaultTheme.links.terms,
                 created,
                 updated,
             },

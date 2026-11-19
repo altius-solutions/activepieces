@@ -1,4 +1,4 @@
-import { ApiKeyResponseWithoutValue } from '@activepieces/shared';
+import { ApiKeyResponseWithoutValue, brand } from '@activepieces/shared';
 import { t } from 'i18next';
 import { Key, MoreHorizontal, Trash } from 'lucide-react';
 
@@ -43,7 +43,9 @@ const ApiKeysPage = () => {
     <AdminPage width="content">
       <AdminPageHeader
         title={t('API Keys')}
-        description={t('Manage API keys to access Activepieces APIs.')}
+        description={t('Manage API keys to access {productName} APIs.', {
+          productName: brand.productName,
+        })}
         resources={adminPageResources.apiKeys}
       >
         <NewApiKeyDialog onCreate={() => refetch()}>

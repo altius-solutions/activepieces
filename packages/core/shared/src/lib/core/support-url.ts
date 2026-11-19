@@ -1,1 +1,3 @@
-export const supportUrl = 'https://community.activepieces.com'
+import { brand } from './common/brand'
+
+export const supportUrl = brand.links.support

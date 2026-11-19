@@ -1,6 +1,7 @@
 import path from 'path';
 
 import react from '@vitejs/plugin-react';
+import { brand } from '../core/shared/src/lib/core/common/brand';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import tailwindcss from '@tailwindcss/vite';
@@ -10,8 +11,8 @@ export default defineConfig(({ command, mode }) => {
   const isDev = command === 'serve' || mode === 'development';
   const emitSourcemap = process.env.AP_BUILD_SOURCEMAP === 'true';
 
-  const AP_TITLE = 'Activepieces';
-  const AP_FAVICON = 'https://activepieces.com/favicon.ico';
+  const AP_TITLE = brand.productName;
+  const AP_FAVICON = brand.logos.favIconUrl;
 
   return {
     server: {

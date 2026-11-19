@@ -93,8 +93,7 @@ const SignUpForm = ({
       case ApEdition.ENTERPRISE:
         return false;
       case ApEdition.COMMUNITY: {
-        form.setValue('newsLetter', true);
-        return true;
+        return false;
       }
     }
   }, [edition, websiteName]);

@@ -1,5 +1,5 @@
 import { isNil, Permission } from '@activepieces/core-utils'
-import { FlowStatus, McpOAuthClientKey, McpProperty, McpServer as McpServerSchema, McpToolDefinition, mcpToolNameUtils, McpToolResult, McpTrigger, PopulatedFlow, PopulatedMcpServer, ProjectScopedMcpServer, TelemetryEventName } from '@activepieces/shared'
+import { FlowStatus, McpOAuthClientKey, McpProperty, McpServer as McpServerSchema, McpToolDefinition, mcpToolNameUtils, McpToolResult, McpTrigger, PopulatedFlow, PopulatedMcpServer, ProjectScopedMcpServer, resolvedBrand, TelemetryEventName } from '@activepieces/shared'
 import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { FastifyBaseLogger } from 'fastify'
 import { flowService } from '../flows/flow/flow.service'
@@ -19,7 +19,7 @@ import { apSetProjectContextTool, SET_PROJECT_CONTEXT_TOOL_NAME } from './tools/
 
 const PLATFORM_LEVEL_TOOL_SET = new Set<string>(PLATFORM_LEVEL_TOOL_NAMES)
 
-const MCP_SERVER_INSTRUCTIONS = `## Activepieces MCP Server
+const MCP_SERVER_INSTRUCTIONS = `## ${resolvedBrand().productName} MCP Server
 
 ### Workflow
 0. Project: on the platform server, call ap_set_project_context first — every project tool, including ap_list_connections and ap_list_ai_models, needs a selected project
@@ -51,21 +51,22 @@ export async function buildMcpServer({ mcp, userId, platformId, platformDisabled
 }): Promise<McpServer> {
     const projectId = mcp.projectId
 
+    const currentBrand = resolvedBrand()
     const server = new McpServer({
-        name: 'Activepieces',
-        title: 'Activepieces',
+        name: currentBrand.productName,
+        title: currentBrand.productName,
         version: '1.0.0',
-        websiteUrl: 'https://activepieces.com',
-        description: 'Automation and workflow MCP server by Activepieces',
+        websiteUrl: currentBrand.links.website,
+        description: `Automation and workflow MCP server by ${currentBrand.companyName}`,
         icons: [
             {
-                src: 'https://cdn.activepieces.com/brand/logo.svg',
+                src: currentBrand.logos.logoIconUrl,
                 mimeType: 'image/svg+xml',
             },
             {
-                src: 'https://cdn.activepieces.com/brand/logo-192.png',
+                src: currentBrand.logos.logoIconUrl.replace(/\.svg(\?.*)?$/, '.png$1'),
                 mimeType: 'image/png',
-                sizes: ['192x192'],
+                sizes: ['64x64'],
             },
         ],
     }, {

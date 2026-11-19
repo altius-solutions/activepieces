@@ -17,6 +17,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { flagsHooks } from '@/hooks/flags-hooks';
 import { AdminControl, adminControl } from '@/lib/admin-control';
 import { cn } from '@/lib/utils';
 
@@ -42,6 +43,7 @@ export function SelfServeTrialLockedActions({
   size = LockedActionsSize.REGULAR,
   showContactSales = true,
 }: SelfServeTrialLockedActionsProps) {
+  const showEnterpriseUpsells = flagsHooks.useShowEnterpriseUpsells();
   const small = size === LockedActionsSize.SMALL;
   const buttonSize = small ? 'sm' : 'default';
   const secondary = small ? 'link' : 'outline';
@@ -118,7 +120,7 @@ export function SelfServeTrialLockedActions({
         </div>
       );
     case ActionWhenLocked.SWITCH_EDITION:
-      if (!showContactSales) {
+      if (!showContactSales || !showEnterpriseUpsells) {
         return null;
       }
       return (

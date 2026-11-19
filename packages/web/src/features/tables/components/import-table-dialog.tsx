@@ -1,5 +1,6 @@
 import {
   ApFlagId,
+  brandDocsUrl,
   isNil,
   SharedTemplate,
   tryCatch,
@@ -425,8 +426,9 @@ async function readJsonTemplate(file: File): Promise<SharedTemplate | null> {
   };
 }
 
-const TABLE_TEMPLATE_DOCS_URL =
-  'https://www.activepieces.com/docs/tables/import-export#importing-a-json-template';
+const TABLE_TEMPLATE_DOCS_URL = brandDocsUrl(
+  'tables/import-export#importing-a-json-template',
+);
 
 ImportTableDialog.displayName = 'ImportTableDialog';
 export { ImportTableDialog };

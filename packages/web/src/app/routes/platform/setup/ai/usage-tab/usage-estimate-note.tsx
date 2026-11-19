@@ -1,3 +1,4 @@
+import { brand } from '@activepieces/shared';
 import { t } from 'i18next';
 import { Info } from 'lucide-react';
 
@@ -40,7 +41,11 @@ export function UsageEstimateNote() {
                 'When a provider does send the exact cost, we use it as is. Open a key to see how much was reported and how much was estimated.',
               )}
             </li>
-            <li>{t('Activepieces credits are always exact.')}</li>
+            <li>
+              {t('{productName} credits are always exact.', {
+                productName: brand.productName,
+              })}
+            </li>
           </ul>
           <p className="border-t border-gray-6 pt-3 text-xs text-gray-11">
             {t(

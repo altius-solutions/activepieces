@@ -2,6 +2,7 @@ import { isNil } from '@activepieces/core-utils';
 import {
   ApEdition,
   ApFlagId,
+  brand,
   PlanName,
   PlatformBillingInformation,
   SelfServeTrialState,
@@ -49,9 +50,9 @@ export function BillingPlanTab() {
         <AdminPage>
           <AdminPageHeader
             title={t('Billing & subscription')}
-            description={t(
-              'For questions about billing contact us at support@activepieces.com',
-            )}
+            description={t('For questions about billing, visit {supportUrl}.', {
+              supportUrl: brand.links.support,
+            })}
           >
             <BillingRefreshButton />
           </AdminPageHeader>

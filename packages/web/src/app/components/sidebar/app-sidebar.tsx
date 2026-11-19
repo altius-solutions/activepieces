@@ -119,7 +119,7 @@ function AppHeader() {
     />
   );
   const brandName = (
-    <span className={sidebarStyles.labelFade}>
+    <span className={cn(sidebarStyles.labelFade, 'text-[var(--brand-navy)]')}>
       {showSwitcher
         ? currentPlatform?.name ?? t('platform')
         : branding.websiteName}

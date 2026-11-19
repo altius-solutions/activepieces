@@ -1,5 +1,5 @@
 import { isEmpty, isNil } from '@activepieces/core-utils';
-import { ApEdition, ApFlagId } from '@activepieces/shared';
+import { ApEdition, ApFlagId, brand } from '@activepieces/shared';
 import { useQueryClient } from '@tanstack/react-query';
 import confetti from 'canvas-confetti';
 import { t } from 'i18next';
@@ -335,9 +335,7 @@ const PROGRESS_CEILING = 95;
 const PROGRESS_SPAN_MS = 20 * 1000;
 const ACTIVATION_TIMEOUT_MS = 75 * 1000;
 const REDIRECT_SECONDS = 5;
-const SUPPORT_MAIL_HREF = `mailto:support@activepieces.com?subject=${encodeURIComponent(
-  'Trial activation failed',
-)}`;
+const SUPPORT_MAIL_HREF = brand.links.support;
 const ACTIVATION_STEPS = [
   { from: 0, message: 'Verifying your account' },
   { from: 18, message: 'Checking platform permissions' },

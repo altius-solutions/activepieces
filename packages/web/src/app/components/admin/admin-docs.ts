@@ -1,5 +1,5 @@
-const DOCS_BASE_URL = 'https://www.activepieces.com/docs';
+import { brandDocsUrl } from '@activepieces/shared';
 
 export const adminDocs = {
-  url: (path: string): string => `${DOCS_BASE_URL}/${path}`,
+  url: (path: string): string => brandDocsUrl(path),
 };

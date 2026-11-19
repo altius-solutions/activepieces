@@ -1,6 +1,7 @@
 import { isNil } from '@activepieces/core-utils';
 import {
   ApEdition,
+  brandDocsUrl,
   CreditsBillableFeature,
   PlanName,
   PlatformBillingInformation,
@@ -222,8 +223,9 @@ export const billingUtils = {
 const BILLING_DATE_FORMAT = 'MMM D, YYYY';
 
 export const enterpriseDocs = {
-  switchToEnterpriseUrl:
-    'https://www.activepieces.com/docs/install/configuration/overview#enterprise-edition-optional',
+  switchToEnterpriseUrl: brandDocsUrl(
+    'install/configuration/overview#enterprise-edition-optional',
+  ),
 };
 
 export const enterpriseMotion = {

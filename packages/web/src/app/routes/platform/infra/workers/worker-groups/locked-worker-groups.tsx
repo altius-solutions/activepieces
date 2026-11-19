@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { SelfServeTrialSalesLink } from '@/features/billing';
 import { WorkerGroupsLockReason } from '@/features/platform-admin';
+import { flagsHooks } from '@/hooks/flags-hooks';
 import { AdminControl, adminControl } from '@/lib/admin-control';
 import { cn } from '@/lib/utils';
 
@@ -26,6 +27,7 @@ export function LockedWorkerGroups({
   reason: WorkerGroupsLockReason;
 }) {
   const copy = lockCopy(reason);
+  const showEnterpriseUpsells = flagsHooks.useShowEnterpriseUpsells();
 
   return (
     <AdminPage className="max-w-6xl">
@@ -55,23 +57,25 @@ export function LockedWorkerGroups({
             </div>
             <p className="text-sm text-gray-11">{copy.description}</p>
           </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-2">
-            <Button variant="outline" asChild>
-              <a
-                {...adminControl(AdminControl.WORKERS_DOCS_LINK)}
-                href={copy.guide.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {copy.guide.label}
-              </a>
-            </Button>
-            <SelfServeTrialSalesLink
-              locationInWebApp={SalesLinkLocationInWebApp.LOCKED_FEATURE}
-              variant="default"
-              featureKey="DEDICATED_WORKERS"
-            />
-          </div>
+          {showEnterpriseUpsells && (
+            <div className="flex shrink-0 flex-wrap items-center gap-2">
+              <Button variant="outline" asChild>
+                <a
+                  {...adminControl(AdminControl.WORKERS_DOCS_LINK)}
+                  href={copy.guide.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {copy.guide.label}
+                </a>
+              </Button>
+              <SelfServeTrialSalesLink
+                locationInWebApp={SalesLinkLocationInWebApp.LOCKED_FEATURE}
+                variant="default"
+                featureKey="DEDICATED_WORKERS"
+              />
+            </div>
+          )}
         </div>
       </div>
       <div
@@ -99,16 +103,14 @@ function lockCopy(reason: WorkerGroupsLockReason): LockCopy {
     case WorkerGroupsLockReason.CLOUD:
       return {
         title: t('Worker groups run on your own servers'),
-        description: t(
-          'Available on self-hosted Activepieces. Talk to sales to set it up.',
-        ),
+        description: t('Available on a self-hosted Enterprise edition.'),
         guide: setupGuide,
       };
     case WorkerGroupsLockReason.COMMUNITY:
       return {
         title: t('Worker groups need the Enterprise edition'),
         description: t(
-          'Switch your Activepieces to the Enterprise edition to use them.',
+          'Worker groups are part of the Enterprise edition, which this Community build does not include.',
         ),
         guide: {
           label: t('How to switch'),
@@ -121,7 +123,7 @@ function lockCopy(reason: WorkerGroupsLockReason): LockCopy {
       return {
         title: t('Your plan doesn’t include worker groups'),
         description: t(
-          'Talk to sales to add them to your plan, then follow the setup guide to start your first group.',
+          'Worker groups are not included in the current edition.',
         ),
         guide: setupGuide,
       };

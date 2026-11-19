@@ -1,3 +1,4 @@
+import { brandDocsUrl } from '@activepieces/shared';
 import { t } from 'i18next';
 import { ExternalLinkIcon, List } from 'lucide-react';
 
@@ -20,7 +21,7 @@ import {
 } from './tracked-events-catalog';
 
 const TELEMETRY_DOCS_URL =
-  'https://www.activepieces.com/docs/install/configure-operate/telemetry';
+  brandDocsUrl('install/configure-operate/telemetry');
 
 export const TrackedEventsDialog = () => {
   const groups = trackedEventsCatalog.buildGroups();

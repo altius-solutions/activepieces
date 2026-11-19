@@ -1,4 +1,4 @@
-import { ApEdition, ApFlagId, isNil } from '@activepieces/shared';
+import { ApEdition, ApFlagId, brandDocsUrl, isNil } from '@activepieces/shared';
 import { t } from 'i18next';
 import {
   Boxes,
@@ -23,11 +23,13 @@ import { HealthCheckStatus } from '@/lib/statuses';
 
 import { DailyHealthStrip } from './daily-health-strip';
 
-const HARDWARE_DOCS_LINK =
-  'https://www.activepieces.com/docs/install/configuration/hardware#technical-specifications';
+const HARDWARE_DOCS_LINK = brandDocsUrl(
+  'install/configuration/hardware#technical-specifications',
+);
 
-const PRODUCTION_SETUP_LINK =
-  'https://www.activepieces.com/docs/install/configure-operate/production-setup#what-it-looks-like';
+const PRODUCTION_SETUP_LINK = brandDocsUrl(
+  'install/configure-operate/production-setup#what-it-looks-like',
+);
 
 // Matches UNKNOWN_VERSION in @activepieces/server-utils: the sentinel the backend reports when
 // it could not read its release from package.json. Not importable here (server-only package).
@@ -109,7 +111,7 @@ export function SystemHealthTab({ onSeeRuns }: SystemHealthTabProps) {
       status: releaseIntegrityOk
         ? HealthCheckStatus.PASSED
         : HealthCheckStatus.FAILED,
-      link: 'https://www.activepieces.com/docs/install/configuration/overview',
+      link: brandDocsUrl('install/configuration/overview'),
       message: releaseIntegrityMessage,
     },
     {

@@ -1,6 +1,6 @@
 const ACHROMATIC_CHROMA = 0.02
 const MAX_CHROMA_RATIO = 1.25
-const DEFAULT_ACCENT_SOLID = '#6e41e2'
+const DEFAULT_ACCENT_SOLID = '#4F46E5'
 const WHITE = '#ffffff'
 const BLACK = '#000000'
 const TEXT_CONTRAST = 4.5

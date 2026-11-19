@@ -1,5 +1,5 @@
 import { AIProviderName } from '@activepieces/core-utils'
-import { AIProviderAuthConfig, AIProviderConfig } from '@activepieces/shared'
+import { AIProviderAuthConfig, AIProviderConfig, resolvedBrand } from '@activepieces/shared'
 import { AIProviderStrategy } from './ai-provider'
 import { anthropicProvider } from './anthropic-provider'
 import { azureProvider } from './azure-provider'
@@ -37,7 +37,7 @@ export const aiProviders: Record<AIProviderName, AIProviderStrategy<AIProviderAu
     [AIProviderName.COHERE]: cohereProvider,
     [AIProviderName.ACTIVEPIECES]: {
         ...openRouterProvider,
-        name: 'Activepieces',
+        name: resolvedBrand().productName,
         async validateConnection(_authConfig, _config, _log): Promise<void> {
             // Activepieces provider is managed internally, no external validation needed
         },

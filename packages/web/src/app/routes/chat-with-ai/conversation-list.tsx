@@ -1,4 +1,4 @@
-import { AgentConversation, SeekPage } from '@activepieces/shared';
+import { AgentConversation, brand, SeekPage } from '@activepieces/shared';
 import {
   InfiniteData,
   QueryKey,
@@ -370,7 +370,9 @@ export function ConversationList({
         <div className="shrink-0 border-t px-4 py-3">
           <p className="flex items-start gap-1.5 text-xs leading-snug text-gray-11">
             <ArrowUpRight size={14} className="mt-px shrink-0" />
-            {t('Open on desktop for the full Activepieces experience.')}
+            {t('Open on desktop for the full {productName} experience.', {
+              productName: brand.productName,
+            })}
           </p>
         </div>
       )}

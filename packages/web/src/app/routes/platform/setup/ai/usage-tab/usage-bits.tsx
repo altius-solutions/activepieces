@@ -2,6 +2,7 @@ import { AIProviderName, isNil } from '@activepieces/core-utils';
 import {
   AiUsageDimension,
   AiUsageItem,
+  brand,
   DEFAULT_BRAND_LOGOS,
 } from '@activepieces/shared';
 import { t } from 'i18next';
@@ -80,7 +81,7 @@ export function ItemIcon({ item }: { item: AiUsageItem }) {
     return (
       <LogoPlate
         src={DEFAULT_BRAND_LOGOS.logoIconUrl}
-        alt={t('Activepieces')}
+        alt={brand.productName}
         className="size-4"
       />
     );

@@ -50,6 +50,7 @@ export function ThemeProvider({
 
     brandSeed.apply({
       primaryColor: branding.colors.primary.default,
+      primaryHover: branding.colors.primary.dark,
       statusColors: branding.statusColors,
     });
   }, [branding]);

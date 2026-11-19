@@ -1,5 +1,5 @@
 import { ActivepiecesError, apId, ErrorCode, isNil, partition, PlatformId, spreadIfDefined, spreadIfNotUndefined, tryCatch, UserId } from '@activepieces/core-utils'
-import { ApEdition, AUDIT_LOG_RETENTION_MAX_DAYS, AUDIT_LOG_RETENTION_MIN_DAYS, AuthenticationResponse, OPEN_SOURCE_PLAN, Platform, PlatformPlanLimits, PlatformResponse, PlatformRole, PlatformUsage, PlatformWithoutFederatedAuth, PlatformWithoutSensitiveData, ProjectType, SsoDomainVerification, SsoDomainVerificationStatus, UpdatePlatformRequestBody, User, UserStatus } from '@activepieces/shared'
+import { ApEdition, AUDIT_LOG_RETENTION_MAX_DAYS, AUDIT_LOG_RETENTION_MIN_DAYS, AuthenticationResponse, OPEN_SOURCE_PLAN, Platform, PlatformPlanLimits, PlatformResponse, PlatformRole, PlatformUsage, PlatformWithoutFederatedAuth, PlatformWithoutSensitiveData, ProjectType, resolvedBrand, SsoDomainVerification, SsoDomainVerificationStatus, UpdatePlatformRequestBody, User, UserStatus } from '@activepieces/shared'
 import { FastifyBaseLogger } from 'fastify'
 import { nanoid } from 'nanoid'
 import { EntityManager, IsNull } from 'typeorm'
@@ -67,7 +67,7 @@ export const platformService = (log: FastifyBaseLogger) => ({
             name,
             primaryColor: primaryColor ?? defaultTheme.colors.primary.default,
             logoIconUrl: logoIconUrl ?? defaultTheme.logos.logoIconUrl,
-            fullLogoUrl: fullLogoUrl ?? defaultTheme.logos.fullLogoUrl,
+            fullLogoUrl: fullLogoUrl ?? resolvedBrand().logos.emailLogoUrl,
             favIconUrl: favIconUrl ?? defaultTheme.logos.favIconUrl,
             emailAuthEnabled: true,
             autoCreatePersonalProjects: true,
